@@ -8,3 +8,5 @@ folder structure setup
 # basic setup 2
 
 main layout with antd
+npm i jwt-decode
+npm i redux-persist
