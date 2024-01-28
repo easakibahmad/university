@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ReactNode } from "react";
 import AdminDashboard from "../pages/admin/AdminDashboard";
 import CreateAdmin from "../pages/admin/CreateAdmin";
@@ -81,29 +80,5 @@ export const adminRoutes = adminPaths2.reduce((accumulator: TRoute[], item) => {
       })
     );
   }
-  return accumulator; // Add this return statement
+  return accumulator;
 }, []);
-
-// !hard coded routes
-// export const adminPaths = [
-//   {
-//     index: true,
-//     element: <AdminDashboard></AdminDashboard>,
-//   },
-//   {
-//     path: "dashboard",
-//     element: <AdminDashboard></AdminDashboard>,
-//   },
-//   {
-//     path: "create-admin",
-//     element: <CreateAdmin></CreateAdmin>,
-//   },
-//   {
-//     path: "create-faculty",
-//     element: <CreateFaculty></CreateFaculty>,
-//   },
-//   {
-//     path: "create-student",
-//     element: <CreateStudent></CreateStudent>,
-//   },
-// ];
