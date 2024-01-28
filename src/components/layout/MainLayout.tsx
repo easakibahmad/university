@@ -1,32 +1,10 @@
-import { Layout, Menu, MenuProps } from "antd";
+import { Layout, Menu } from "antd";
+import { Outlet } from "react-router-dom";
+import { adminSideBarItems } from "../../routes/admin.routes";
 
 const { Header, Content, Footer, Sider } = Layout;
 
 const MainLayout = () => {
-  const items: MenuProps["items"] = [
-    {
-      key: "1",
-      label: "Dashboard",
-    },
-    {
-      key: "2",
-      label: "Profile",
-    },
-    {
-      key: "3",
-      label: "User Management",
-      children: [
-        {
-          key: "11",
-          label: "Create Admin",
-        },
-        {
-          key: "12",
-          label: "Create Student",
-        },
-      ],
-    },
-  ];
   return (
     <Layout style={{ height: "100vh" }}>
       <Sider
@@ -44,8 +22,8 @@ const MainLayout = () => {
             color: "white",
             display: "flex",
             justifyContent: "center",
-                      alignItems: "center",
-            height: "4rem"
+            alignItems: "center",
+            height: "4rem",
           }}
         >
           <h1>University</h1>
@@ -54,7 +32,7 @@ const MainLayout = () => {
           theme="dark"
           mode="inline"
           defaultSelectedKeys={["4"]}
-          items={items}
+          items={adminSideBarItems}
         />
       </Sider>
       <Layout>
@@ -66,7 +44,7 @@ const MainLayout = () => {
               minHeight: 360,
             }}
           >
-            <h1>this is university management</h1>
+            <Outlet />
           </div>
         </Content>
         <Footer style={{ textAlign: "center" }}>
