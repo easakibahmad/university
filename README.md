@@ -10,3 +10,4 @@ folder structure setup
 main layout with antd
 npm i jwt-decode
 npm i redux-persist
+npm install sonner
