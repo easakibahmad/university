@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Button, Row } from "antd";
 import { FieldValues, useForm } from "react-hook-form";
 import { useLoginMutation } from "../redux/features/auth/authApi";
 import { useDispatch } from "react-redux";
@@ -6,22 +6,28 @@ import { TUser, setUser } from "../redux/features/auth/authSlice";
 import { verifyToken } from "../utils/verifyToken";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import UForm from "../components/form/UForm";
+import UInput from "../components/form/UInput";
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm({
-    defaultValues: {
-      id: "A-0001",
-      password: "admin123",
-    },
-  });
+  // const { register, handleSubmit } = useForm({
+  //   defaultValues: {
+  //     id: "A-0001",
+  //     password: "admin123",
+  //   },
+  // });
   const [login] = useLoginMutation();
 
   // console.log(error, data);
 
+  const defaultValues: { id: string; password: string } = {
+    id: "A-0001",
+    password: "admin123",
+  };
   const onSubmit = async (data: FieldValues) => {
-    // console.log(data);
+    console.log(data);
     const toastId = toast.loading("Logging in...");
     try {
       const userInfo = {
@@ -40,17 +46,17 @@ const Login = () => {
     }
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label htmlFor="id">ID: </label>
-        <input type="text" id="id" {...register("id")} />
-      </div>
-      <div>
-        <label htmlFor="password">Password: </label>
-        <input type="text" id="password" {...register("password")} />
-      </div>
-      <Button htmlType="submit">Submit</Button>
-    </form>
+    <Row justify="center" align="middle">
+      <UForm onSubmit={onSubmit} defaultValues={defaultValues}>
+        <div>
+          <UInput type="text" name="id" label="ID:"></UInput>
+        </div>
+        <div>
+          <UInput type="text" name="password" label="Password:"></UInput>
+        </div>
+        <Button htmlType="submit">Submit</Button>
+      </UForm>
+    </Row>
   );
 };
 

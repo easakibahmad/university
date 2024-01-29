@@ -1,6 +1,12 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import {
+  BaseQueryApi,
+  BaseQueryFn,
+  DefinitionType,
+  FetchArgs,
+  createApi,
+  fetchBaseQuery,
+} from "@reduxjs/toolkit/query/react";
 import { RootState } from "../features/store";
-import { appendErrors } from "react-hook-form";
 import { logout, setUser } from "../features/auth/authSlice";
 
 const baseQuery = fetchBaseQuery({
@@ -15,7 +21,11 @@ const baseQuery = fetchBaseQuery({
   },
 });
 
-const baseQueryWithRefreshToken = async (args, api, extraOptions) => {
+const baseQueryWithRefreshToken: BaseQueryFn<
+  FetchArgs,
+  BaseQueryApi,
+  DefinitionType
+> = async (args, api, extraOptions): Promise<any> => {
   const { signal, ...baseQueryArgs } = args;
 
   // Call baseQuery with the modified arguments
